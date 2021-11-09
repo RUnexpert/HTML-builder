@@ -10,9 +10,16 @@ fs.readdir(dir, (err, files) => {
         console.error(err);
         return;
       }
+
       if (stats.isFile()) {
         let arr = file.split(".");
-        let str = arr[0] + " - " + arr[1] + " - " + stats.size / 1024 + "kb";
+        let str =
+          arr[0] +
+          " - " +
+          arr[arr.length - 1] +
+          " - " +
+          stats.size / 1024 +
+          "kb";
         console.log(str);
       }
     });
