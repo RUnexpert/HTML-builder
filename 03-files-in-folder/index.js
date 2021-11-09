@@ -12,11 +12,10 @@ fs.readdir(dir, (err, files) => {
       }
 
       if (stats.isFile()) {
-        let arr = file.split(".");
         let str =
-          arr[0] +
+          path.parse(file).name +
           " - " +
-          arr[arr.length - 1] +
+          path.extname(file).substr(1) +
           " - " +
           stats.size / 1024 +
           "kb";
