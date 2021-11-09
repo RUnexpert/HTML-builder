@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const chalk = require("chalk");
 
 let readableStream = fs.createReadStream(
   path.join(__dirname, "text.txt"),
@@ -8,5 +7,5 @@ let readableStream = fs.createReadStream(
 );
 
 readableStream.on("data", (chunk) => {
-  console.log(chalk.blue(chunk));
+  console.log(chunk);
 });
