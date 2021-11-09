@@ -10,12 +10,6 @@ let rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question("Write your text:", (text) => {
-  writableStream.write(text, (err) => {
-    if (err) throw err;
-  });
-});
-
 rl.on("line", (text) => {
   if (text === "exit") rl.close();
   writableStream.write(`\n${text}`, (err) => {
@@ -26,4 +20,12 @@ rl.on("line", (text) => {
 rl.on("close", () => {
   console.log("Operation completed");
   process.exit();
+});
+
+rl.question("Write your text:", (text) => {
+  if (text === "exit") rl.close();
+
+  writableStream.write(text, (err) => {
+    if (err) throw err;
+  });
 });
