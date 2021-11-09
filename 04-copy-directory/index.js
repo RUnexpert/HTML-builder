@@ -5,7 +5,7 @@ const dir = path.join(__dirname, "files");
 const copyDir = path.join(__dirname, "files-copy/");
 
 async function copyFiles() {
-  const files = await fs.readdir(dir);
+  await fs.mkdir(path.join(__dirname, "files-copy"), { recursive: true });
 
   FS.readdir(copyDir, (err, files) => {
     files.forEach((file) => {
@@ -15,7 +15,7 @@ async function copyFiles() {
     });
   });
 
-  await fs.mkdir(path.join(__dirname, "files-copy"), { recursive: true });
+  const files = await fs.readdir(dir);
 
   files.forEach(async (file) => {
     const files = path.join(__dirname, "files", file);
