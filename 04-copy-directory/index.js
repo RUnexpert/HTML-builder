@@ -5,6 +5,9 @@ const dir = path.join(__dirname, "files");
 const copyDir = path.join(__dirname, "files-copy/");
 
 async function copyFiles() {
+  await fs.mkdir(path.join(__dirname, "files-copy"), { recursive: true });
+  const files = await fs.readdir(dir);
+
   FS.readdir(copyDir, (err, files) => {
     files.forEach((file) => {
       FS.unlink(copyDir + file, function (err) {
@@ -12,9 +15,6 @@ async function copyFiles() {
       });
     });
   });
-
-  await fs.mkdir(path.join(__dirname, "files-copy"), { recursive: true });
-  const files = await fs.readdir(dir);
 
   files.forEach(async (file) => {
     const files = path.join(__dirname, "files", file);
